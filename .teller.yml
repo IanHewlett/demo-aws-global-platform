@@ -21,6 +21,9 @@ providers:
       TPL_GITHUB_ORG:
         path: admin/secret/data/svc/platform-envs
         field: github_org
+      TPL_VAULT_ADDR:
+        path: admin/secret/data/svc/platform-envs
+        field: vault_addr
       TPL_AWS_ACCOUNT_ID:
         path: admin/secret/data/svc/platform-envs
         field: aws_account_id

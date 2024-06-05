@@ -3,6 +3,7 @@ locals {
   project_name   = local.role_vars.locals.project_name
   environment    = local.role_vars.locals.role
   github_org     = local.role_vars.locals.github_org
+  vault_addr     = local.role_vars.locals.vault_addr
   aws_account_id = local.role_vars.locals.aws_account_id
   default_region = "us-east-2"
 }
