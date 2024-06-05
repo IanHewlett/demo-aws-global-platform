@@ -1,4 +1,31 @@
 #!/usr/bin/env just --justfile
+KEEP_TERRAGRUNT_CACHE := "false"
 
 _default:
   @just --list
+
+_terragrunt-run action module *flags:
+  terragrunt run-all {{action}} {{flags}} --terragrunt-working-dir {{module}}
+
+clean env:
+  @rm -rf ./{{env}}/role.hcl
+  @{{KEEP_TERRAGRUNT_CACHE}} || ( find . -type f -name '.terraform*' && find . -type d -name '.terragrunt*' ) | xargs rm -rf
+
+template env: (clean env)
+  project_name="$TPL_PROJECT_NAME" \
+  github_org="$TPL_GITHUB_ORG" \
+  aws_account_id="$TPL_AWS_ACCOUNT_ID" \
+  role="{{env}}" \
+  envsubst < ./{{env}}/role.tpl > ./{{env}}/role.hcl
+
+validate env module: (template env)
+  just _terragrunt-run validate {{module}} --terragrunt-non-interactive
+
+plan env module: (validate env module)
+  just _terragrunt-run plan {{module}} --terragrunt-non-interactive
+
+apply env module: (plan env module)
+  just _terragrunt-run apply {{module}} --terragrunt-non-interactive
+
+destroy env module: (validate env module)
+  just _terragrunt-run destroy {{module}} --terragrunt-non-interactive

@@ -1,0 +1,26 @@
+project: demo-platform-aws-global
+
+providers:
+  hashicorp_vault:
+    env:
+      GITHUB_TOKEN:
+        path: admin/secret/data/svc/github
+        field: image_pull_token
+      TF_CLOUD_TOKEN:
+        path: admin/secret/data/svc/terraform-cloud
+        field: tfc_cloud_token
+      AWS_ACCESS_KEY_ID:
+        path: admin/secret/data/svc/aws
+        field: aws_access_key_id
+      AWS_SECRET_ACCESS_KEY:
+        path: admin/secret/data/svc/aws
+        field: aws_secret_access_key
+      TPL_PROJECT_NAME:
+        path: admin/secret/data/svc/platform-envs
+        field: project_name
+      TPL_GITHUB_ORG:
+        path: admin/secret/data/svc/platform-envs
+        field: github_org
+      TPL_AWS_ACCOUNT_ID:
+        path: admin/secret/data/svc/platform-envs
+        field: aws_account_id
