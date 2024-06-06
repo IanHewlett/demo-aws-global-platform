@@ -2,3 +2,28 @@
 
 _default:
   @just --list
+
+test-infra env region:
+  just _test-module {{env}} aws-vpc {{region}}
+_test-module env module region="": (_get-module-inputs env module region)
+  @just _template-module-version {{module}} $(just _get-module-version {{env}} {{module}} {{region}})
+  AWS_DEFAULT_REGION={{region}} inspec exec modules/{{module}} -t aws:// \
+    --tags=spec \
+    --input-file modules/{{module}}/inputs.yaml \
+    --input aws_region={{region}} \
+    --show-progress \
+    --no-create-lockfile
+@_get-module-inputs env module region="":
+  rm -rf test/modules/{{module}}/inputs.yaml
+  terragrunt render-json --terragrunt-config ../infra/{{env}}/instance/{{module}}/{{region}}/terragrunt.hcl --terragrunt-json-out inputs.json
+  jq .inputs ../infra/{{env}}/instance/{{module}}/{{region}}/inputs.json > inputs.json
+  yq -p json -o yaml inputs.json > modules/{{module}}/inputs.yaml
+  rm -rf inputs.json
+  rm -rf ../infra/{{env}}/instance/{{module}}/{{region}}/inputs.json
+@_get-module-version env module region="":
+  terragrunt render-json --terragrunt-config ../infra/{{env}}/instance/{{module}}/{{region}}/terragrunt.hcl --terragrunt-json-out inputs.json
+  jq -r .locals.module_version ../infra/{{env}}/instance/{{module}}/{{region}}/inputs.json
+  rm -rf ../infra/{{env}}/instance/{{module}}/{{region}}/inputs.json
+_template-module-version module version:
+  rm -rf modules/{{module}}/inspec.yml
+  yq '.depends[1].tag |= "{{version}}"' modules/{{module}}/inspec.tpl > modules/{{module}}/inspec.yml
