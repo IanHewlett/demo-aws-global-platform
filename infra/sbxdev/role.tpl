@@ -4,4 +4,5 @@ locals {
   vault_addr     = "$vault_addr"
   aws_account_id = "$aws_account_id"
   role           = "$role"
+  cluster_domain = "$cluster_domain"
 }

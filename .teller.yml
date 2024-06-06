@@ -27,3 +27,6 @@ providers:
       TPL_AWS_ACCOUNT_ID:
         path: admin/secret/data/svc/platform-envs
         field: aws_account_id
+      TPL_CLUSTER_DOMAIN:
+        path: admin/secret/data/svc/platform-envs
+        field: cluster_domain

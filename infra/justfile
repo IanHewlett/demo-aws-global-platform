@@ -16,6 +16,7 @@ template env: (clean env)
   github_org="$TPL_GITHUB_ORG" \
   vault_addr="$TPL_VAULT_ADDR" \
   aws_account_id="$TPL_AWS_ACCOUNT_ID" \
+  cluster_domain="$TPL_CLUSTER_DOMAIN" \
   role="{{env}}" \
   envsubst < ./{{env}}/role.tpl > ./{{env}}/role.hcl
 
