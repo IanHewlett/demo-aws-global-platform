@@ -1,0 +1,10 @@
+{
+  "namespaces": [
+    "cert-manager",
+    "karpenter",
+    "istio-system",
+    "connaisseur",
+    "opentelemetry",
+    "wiremock"
+  ]
+}
