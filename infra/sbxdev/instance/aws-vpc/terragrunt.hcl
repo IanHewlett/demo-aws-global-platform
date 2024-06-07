@@ -3,20 +3,20 @@ locals {
   #aws_assume_role = "platform-routing-role"
   #aws_assume_role = "platform-vpc-role"
   aws_assume_role = "Terraform"
-  module_source = "demo-module-aws-vpc"
-  module_version = "0.0.1"
+  module_source   = "demo-module-aws-vpc"
+  module_version  = "0.0.1"
 }
 
 inputs = {
   vpc_secondary_cidr = "10.51.4.0/24"
-  instance = "sbxdev-aws-${basename(get_terragrunt_dir())}"
-  cluster_domain = local.role_vars.locals.cluster_domain
+  instance           = "sbxdev-aws-${basename(get_terragrunt_dir())}"
+  cluster_domain     = local.role_vars.locals.cluster_domain
 }
 
 generate "provider" {
-  path = "provider.tf"
+  path      = "provider.tf"
   if_exists = "overwrite_terragrunt"
-  contents = <<EOF
+  contents  = <<EOF
 provider "aws" {
   region  = "${basename(get_terragrunt_dir())}"
 
@@ -38,7 +38,7 @@ EOF
 generate "remote_state" {
   path      = "backend.tf"
   if_exists = "overwrite_terragrunt"
-  contents = <<EOF
+  contents  = <<EOF
 terraform {
   cloud {
     organization = "ianwhewlett"

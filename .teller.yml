@@ -30,3 +30,9 @@ providers:
       TPL_CLUSTER_DOMAIN:
         path: admin/secret/data/svc/platform-envs
         field: cluster_domain
+      TPL_MANAGEMENT_NODE_GROUP_NAME:
+        path: admin/secret/data/svc/platform-envs
+        field: management_node_group_name
+      TPL_MANAGEMENT_NODE_GROUP_ROLE:
+        path: admin/secret/data/svc/platform-envs
+        field: management_node_group_role

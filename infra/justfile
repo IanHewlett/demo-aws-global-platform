@@ -17,6 +17,8 @@ template env: (clean env)
   vault_addr="$TPL_VAULT_ADDR" \
   aws_account_id="$TPL_AWS_ACCOUNT_ID" \
   cluster_domain="$TPL_CLUSTER_DOMAIN" \
+  management_node_group_name="$TPL_MANAGEMENT_NODE_GROUP_NAME" \
+  management_node_group_role="$TPL_MANAGEMENT_NODE_GROUP_ROLE" \
   role="{{env}}" \
   envsubst < ./{{env}}/role.tpl > ./{{env}}/role.hcl
 

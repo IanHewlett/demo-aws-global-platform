@@ -5,6 +5,7 @@ _default:
 
 test-infra env region:
   just _test-module {{env}} aws-vpc {{region}}
+  just _test-module {{env}} aws-eks {{region}}
 _test-module env module region="": (_get-module-inputs env module region)
   @just _template-module-version {{module}} $(just _get-module-version {{env}} {{module}} {{region}})
   AWS_DEFAULT_REGION={{region}} inspec exec modules/{{module}} -t aws:// \
