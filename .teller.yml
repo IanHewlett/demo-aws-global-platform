@@ -21,6 +21,9 @@ providers:
       TPL_GITHUB_ORG:
         path: admin/secret/data/svc/platform-envs
         field: github_org
+      TPL_REPOSITORY_NAME:
+        path: admin/secret/data/svc/platform-envs
+        field: repository_name
       TPL_VAULT_ADDR:
         path: admin/secret/data/svc/platform-envs
         field: vault_addr

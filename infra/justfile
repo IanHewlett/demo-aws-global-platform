@@ -14,6 +14,7 @@ clean env:
 template env: (clean env)
   project_name="$TPL_PROJECT_NAME" \
   github_org="$TPL_GITHUB_ORG" \
+  repository_name="$TPL_REPOSITORY_NAME" \
   vault_addr="$TPL_VAULT_ADDR" \
   aws_account_id="$TPL_AWS_ACCOUNT_ID" \
   cluster_domain="$TPL_CLUSTER_DOMAIN" \

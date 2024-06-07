@@ -1,0 +1,8 @@
+{
+  "wiremock": {
+    "name": "wiremock",
+    "namespace": "wiremock",
+    "version": "0.0.1",
+    "value_files": ["values.yaml"]
+  }
+}
