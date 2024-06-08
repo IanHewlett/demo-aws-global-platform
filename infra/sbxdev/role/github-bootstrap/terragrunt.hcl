@@ -5,7 +5,7 @@ include "root" {
 
 locals {
   module_source  = "demo-module-github-bootstrap"
-  module_version = "0.0.1"
+  module_version = "0.0.2"
 }
 
 inputs = {
